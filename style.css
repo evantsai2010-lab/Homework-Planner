@@ -3,7 +3,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: #f4f6f8;
   color: #222;
-  max-width: 900px;
+  max-width: 800px;
   margin: auto;
   padding: 25px;
 }
@@ -63,6 +63,7 @@ h2 {
   outline: none;
 }
 
+/* Inline Inputs for Difficulty & Importance */
 .inline-inputs {
   display: flex;
   gap: 18px;
@@ -89,35 +90,66 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Timeline Grid */
-.timeline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 15px;
+/* Timeline */
+.timeline {
+  position: relative;
+  margin-left: 15px;
 }
 
 .schedule-block {
-  border-radius: 12px;
+  position: relative;
+  border-left: 6px solid #1e88e5;
+  border-radius: 10px;
   padding: 14px 16px;
+  margin-bottom: 18px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   animation: slideIn 0.4s ease forwards;
   font-family: 'Roboto Slab', serif;
   color: #222;
-  word-wrap: break-word;
-  min-height: 90px;
 }
 
-/* Break block */
+/* Subject colors */
+.schedule-block.Math {
+  background: #ffe5e5;
+  border-left-color: #e53935;
+}
+
+.schedule-block.Science {
+  background: #e5ffe5;
+  border-left-color: #43a047;
+}
+
+.schedule-block.English {
+  background: #e5f0ff;
+  border-left-color: #1e88e5;
+}
+
+.schedule-block.History {
+  background: #fff5e5;
+  border-left-color: #fb8c00;
+}
+
 .break {
-  background: #fff3e0 !important;
-  border-left: 6px solid #ffb74d !important;
+  background: #fff3e0;
+  border-left-color: #ffb74d;
+}
+
+.schedule-block::before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 14px;
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  border-radius: 50%;
+  border: 2px solid #fff;
 }
 
 /* Text Styling */
 strong {
+  color: #0d47a1;
   font-style: italic;
-  display: block;
-  margin-bottom: 4px;
 }
 
 small {
@@ -137,15 +169,14 @@ footer p {
   font-style: italic;
 }
 
-/* Animation */
+/* Timeline Animation */
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive grid for mobile */
-@media (max-width: 500px) {
-  .timeline-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
