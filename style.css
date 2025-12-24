@@ -1,4 +1,3 @@
-/* Global Styles */
 body {
   font-family: 'Poppins', sans-serif;
   background: #f4f6f8;
@@ -32,7 +31,6 @@ h2 {
   margin-bottom: 18px;
 }
 
-/* Card Layout */
 .card {
   background: #fff;
   border-radius: 18px;
@@ -47,7 +45,6 @@ h2 {
   box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-/* Inputs */
 .inputs input, 
 .inputs button, 
 .time-section input, 
@@ -69,7 +66,6 @@ h2 {
   outline: none;
 }
 
-/* Inline Inputs for Difficulty & Importance */
 .inline-inputs {
   display: flex;
   gap: 18px;
@@ -80,7 +76,6 @@ h2 {
   flex: 1;
 }
 
-/* Buttons */
 button {
   background: #1e88e5;
   color: white;
@@ -96,7 +91,6 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Color Picker Buttons */
 .color-btn {
   width: 30px;
   height: 30px;
@@ -108,7 +102,6 @@ button:hover {
   position: relative;
 }
 
-/* Subtle tint overlay for selected color */
 .color-btn.selected::after {
   content: '';
   position: absolute;
@@ -117,20 +110,20 @@ button:hover {
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  background: rgba(0,0,0,0.15); /* soft overlay */
+  background: rgba(0,0,0,0.15); /*btw this is for the overlay*/
   pointer-events: none;
 }
 
 .color-btn.selected {
   border-color: #000; /* slightly darker border */
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); /* subtle glow */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); 
 }
 
 .color-btn:hover {
-  box-shadow: 0 0 4px rgba(0,0,0,0.15); /* small hover effect */
+  box-shadow: 0 0 4px rgba(0,0,0,0.15); 
 }
 
-/* Timeline */
+
 .timeline {
   position: relative;
   margin-left: 15px;
@@ -167,7 +160,7 @@ button:hover {
   border: 2px solid #fff;
 }
 
-/* Footer */
+
 footer {
   text-align: center;
   margin-top: 35px;
@@ -179,7 +172,6 @@ footer p {
   font-style: italic;
 }
 
-/* Timeline Animation */
 @keyframes slideFadeIn {
   from {
     opacity: 0;
@@ -190,3 +182,4 @@ footer p {
     transform: translateY(0);
   }
 }
+
