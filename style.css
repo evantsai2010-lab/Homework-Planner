@@ -1,6 +1,6 @@
-/* Global */
+/* Global Styles */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #f5f7fa;
   color: #222;
   max-width: 800px;
@@ -14,18 +14,19 @@ header {
 }
 
 h1 {
-  color: #1e88e5;
   font-weight: 600;
   font-size: 2.2em;
+  color: #1e88e5;
 }
 
 h2 {
+  font-weight: 500;
+  font-size: 1.3em;
   color: #333;
   margin-bottom: 15px;
-  font-weight: 600;
 }
 
-/* Card sections */
+/* Card Layout */
 .card {
   background: #fff;
   border-radius: 15px;
@@ -56,7 +57,7 @@ h2 {
   outline: none;
 }
 
-/* Inline Inputs */
+/* Inline Inputs for Difficulty & Importance */
 .inline-inputs {
   display: flex;
   gap: 15px;
@@ -114,7 +115,7 @@ button:hover {
   border: 2px solid #fff;
 }
 
-/* Text styling */
+/* Text Styling */
 strong {
   color: #1e88e5;
 }
