@@ -9,9 +9,11 @@ const importanceInput = document.getElementById("importance");
 const startTimeInput = document.getElementById("startTime");
 const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
+const timeline = document.getElementById("timeline");
 
 const colorButtons = document.querySelectorAll('.color-btn');
-let selectedColor = "#1e88e5";
+let selectedColor = "#1e88e5"; // default
+let animationDelay = 0;
 
 colorButtons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -51,16 +53,26 @@ addBtn.onclick = () => {
 // ---------- GENERATE SCHEDULE ----------
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
+  animationDelay = 0;
   let currentTime = parseTime(startTimeInput.value);
 
   assignments.forEach(task => {
     let remaining = task.minutes;
     while (remaining > 0) {
-      let blockMinutes = Math.min(50, remaining);
+      let blockMinutes = Math.min(50, remaining); // max 50 mins per block
       let endTime = addMinutes(currentTime, blockMinutes);
+
       renderBlock(formatTime(currentTime), formatTime(endTime), task.title, task.subject, task.color);
+
       currentTime = endTime;
       remaining -= blockMinutes;
+
+      // Insert 10-min break if needed
+      if (remaining > 0) {
+        let breakEnd = addMinutes(currentTime, 10);
+        renderBreak(formatTime(currentTime), formatTime(breakEnd));
+        currentTime = breakEnd;
+      }
     }
   });
 };
@@ -71,8 +83,19 @@ function renderBlock(start, end, title, subject, color) {
   block.className = 'schedule-block';
   block.style.backgroundColor = color;
   block.style.borderLeft = `6px solid ${color}`;
-  block.innerHTML = `<strong>${start} – ${end}</strong> ${title} (${subject})`;
+  block.style.animationDelay = `${animationDelay}s`;
+  block.innerHTML = `<strong>${start} – ${end}</strong><br><em>${title} (${subject})</em>`;
   timeline.appendChild(block);
+  animationDelay += 0.15;
+}
+
+function renderBreak(start, end) {
+  const block = document.createElement('div');
+  block.className = 'schedule-block break';
+  block.style.animationDelay = `${animationDelay}s`;
+  block.innerHTML = `<strong>${start} – ${end}</strong><br><em>Break / Rest</em>`;
+  timeline.appendChild(block);
+  animationDelay += 0.15;
 }
 
 // ---------- HELPERS ----------
