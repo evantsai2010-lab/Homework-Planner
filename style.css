@@ -142,3 +142,10 @@ footer p {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Responsive grid for mobile */
+@media (max-width: 500px) {
+  .timeline-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
