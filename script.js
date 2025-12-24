@@ -4,11 +4,12 @@ const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
-let animationDelay = 0; // for staggered animation
+let animationDelay = 0;
 
 addBtn.onclick = () => {
   const assignment = {
     title: title.value,
+    subject: subject.value || "General",
     due: new Date(due.value),
     minutes: Number(minutes.value),
     difficulty: Number(difficulty.value),
@@ -18,6 +19,14 @@ addBtn.onclick = () => {
   assignments.push(assignment);
   localStorage.setItem("assignments", JSON.stringify(assignments));
   alert("Assignment added.");
+
+  // Clear input fields for next entry
+  title.value = "";
+  subject.value = "";
+  due.value = "";
+  minutes.value = "";
+  difficulty.value = "";
+  importance.value = "";
 };
 
 generateBtn.onclick = () => {
@@ -41,7 +50,7 @@ generateBtn.onclick = () => {
         formatTime(endTime),
         task.title,
         explanation(task),
-        task.score
+        task.subject
       );
 
       currentTime = endTime;
@@ -72,13 +81,13 @@ function priorityScore(a) {
 }
 
 // ---------- RENDERING ----------
-function renderBlock(start, end, title, reason, score) {
+function renderBlock(start, end, title, reason, subject) {
   const block = document.createElement('div');
-  block.className = 'schedule-block ' + priorityClass(score);
+  block.className = `schedule-block ${subject}`;
   block.style.animationDelay = `${animationDelay}s`;
   block.innerHTML = `
     <strong>${start} – ${end}</strong><br>
-    <em>${title}</em><br>
+    <em>${title} (${subject})</em><br>
     <small>${reason}</small>
   `;
   timeline.appendChild(block);
@@ -96,13 +105,6 @@ function renderBreak(start, end) {
   `;
   timeline.appendChild(block);
   animationDelay += 0.15;
-}
-
-// Assign color class based on score
-function priorityClass(score) {
-  if(score >= 10) return 'high';
-  if(score >= 6) return 'medium';
-  return 'low';
 }
 
 // ---------- HELPERS ----------
