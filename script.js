@@ -12,7 +12,7 @@ const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
 const colorButtons = document.querySelectorAll('.color-btn');
-let selectedColor = "#1e88e5"; // default
+let selectedColor = "#90caf9"; // default
 let animationDelay = 0;
 
 colorButtons.forEach(btn => {
