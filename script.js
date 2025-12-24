@@ -4,15 +4,23 @@ const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
-// Grab input elements
 const titleInput = document.getElementById("title");
 const subjectInput = document.getElementById("subject");
-const colorInput = document.getElementById("color");
 const dueInput = document.getElementById("due");
 const minutesInput = document.getElementById("minutes");
 const difficultyInput = document.getElementById("difficulty");
 const importanceInput = document.getElementById("importance");
 const startTimeInput = document.getElementById("startTime");
+const colorButtons = document.querySelectorAll('.color-btn');
+
+let selectedColor = "#1e88e5"; // default
+colorButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    selectedColor = btn.getAttribute('data-color');
+    colorButtons.forEach(b => b.style.border = '2px solid #fff');
+    btn.style.border = '2px solid #000';
+  });
+});
 
 let animationDelay = 0;
 
@@ -20,7 +28,7 @@ addBtn.onclick = () => {
   const assignment = {
     title: titleInput.value,
     subject: subjectInput.value || "General",
-    color: colorInput.value || "#1e88e5",
+    color: selectedColor,
     due: new Date(dueInput.value),
     minutes: Number(minutesInput.value),
     difficulty: Number(difficultyInput.value),
@@ -39,7 +47,6 @@ addBtn.onclick = () => {
   // Clear inputs
   titleInput.value = "";
   subjectInput.value = "";
-  colorInput.value = "#1e88e5";
   dueInput.value = "";
   minutesInput.value = "";
   difficultyInput.value = "";
@@ -92,7 +99,7 @@ function priorityScore(a) {
 // ---------- RENDERING ----------
 function renderBlock(start, end, title, reason, subject, color) {
   const block = document.createElement('div');
-  block.className = `schedule-block`;
+  block.className = 'schedule-block';
   block.style.backgroundColor = color;
   block.style.borderLeft = `6px solid ${darkenColor(color, 20)}`;
   block.style.animationDelay = `${animationDelay}s`;
