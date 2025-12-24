@@ -30,7 +30,6 @@ h2 {
   font-size: 1.4em;
   color: #333;
   margin-bottom: 18px;
-  font-family: 'Poppins', sans-serif;
 }
 
 /* Card Layout */
@@ -106,21 +105,28 @@ button:hover {
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   animation: slideIn 0.4s ease forwards;
   font-family: 'Roboto Slab', serif;
+  color: #222;
 }
 
-.schedule-block.low {
-  border-left-color: #64b5f6;
-  background: #eaf3fd;
+/* Subject colors */
+.schedule-block.Math {
+  background: #ffe5e5;
+  border-left-color: #e53935;
 }
 
-.schedule-block.medium {
+.schedule-block.Science {
+  background: #e5ffe5;
+  border-left-color: #43a047;
+}
+
+.schedule-block.English {
+  background: #e5f0ff;
   border-left-color: #1e88e5;
-  background: #d2e7fb;
 }
 
-.schedule-block.high {
-  border-left-color: #0d47a1;
-  background: #a6c8f9;
+.schedule-block.History {
+  background: #fff5e5;
+  border-left-color: #fb8c00;
 }
 
 .break {
