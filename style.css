@@ -1,47 +1,57 @@
+/* Global Styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #f5f7fa;
+  background: #f4f6f8;
   color: #222;
   max-width: 800px;
   margin: auto;
-  padding: 20px;
+  padding: 25px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 h1 {
   font-weight: 600;
-  font-size: 2.2em;
+  font-size: 2.4em;
   color: #1e88e5;
+  font-family: 'Roboto Slab', serif;
+}
+
+.italic {
+  font-style: italic;
+  color: #1565c0;
 }
 
 h2 {
   font-weight: 500;
-  font-size: 1.3em;
+  font-size: 1.4em;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Card Layout */
 .card {
   background: #fff;
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.09);
 }
 
+/* Inputs */
 .inputs input, 
 .inputs button, 
 .time-section input, 
 .time-section button {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 12px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
   font-size: 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
   transition: all 0.2s;
@@ -50,33 +60,38 @@ h2 {
 .inputs input:focus, 
 .time-section input:focus {
   border-color: #1e88e5;
-  box-shadow: 0 0 0 2px rgba(30,136,229,0.2);
+  box-shadow: 0 0 0 3px rgba(30,136,229,0.2);
   outline: none;
 }
 
+/* Inline Inputs for Difficulty & Importance */
 .inline-inputs {
   display: flex;
-  gap: 15px;
-  margin-bottom: 12px;
+  gap: 18px;
+  margin-bottom: 14px;
 }
 
 .inline-inputs div {
   flex: 1;
 }
 
+/* Buttons */
 button {
   background: #1e88e5;
   color: white;
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
   background: #1565c0;
+  transform: translateY(-2px);
 }
 
+/* Timeline */
 .timeline {
   position: relative;
   margin-left: 15px;
@@ -84,13 +99,28 @@ button:hover {
 
 .schedule-block {
   position: relative;
-  background: #e3f2fd;
   border-left: 6px solid #1e88e5;
-  border-radius: 8px;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   animation: slideIn 0.4s ease forwards;
+  font-family: 'Roboto Slab', serif;
+}
+
+.schedule-block.low {
+  border-left-color: #64b5f6;
+  background: #eaf3fd;
+}
+
+.schedule-block.medium {
+  border-left-color: #1e88e5;
+  background: #d2e7fb;
+}
+
+.schedule-block.high {
+  border-left-color: #0d47a1;
+  background: #a6c8f9;
 }
 
 .break {
@@ -102,7 +132,7 @@ button:hover {
   content: '';
   position: absolute;
   left: -15px;
-  top: 12px;
+  top: 14px;
   width: 10px;
   height: 10px;
   background: inherit;
@@ -110,27 +140,30 @@ button:hover {
   border: 2px solid #fff;
 }
 
-
-
+/* Text Styling */
 strong {
-  color: #1e88e5;
+  color: #0d47a1;
+  font-style: italic;
 }
 
 small {
   color: #555;
-  font-size: 0.85em;
+  font-size: 0.88em;
 }
 
+/* Footer */
 footer {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 35px;
 }
 
 footer p {
   color: #999;
   font-size: 0.85em;
+  font-style: italic;
 }
 
+/* Timeline Animation */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -141,4 +174,3 @@ footer p {
     transform: translateX(0);
   }
 }
-
