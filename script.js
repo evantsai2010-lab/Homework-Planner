@@ -4,17 +4,27 @@ const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
+// Grab input elements
+const titleInput = document.getElementById("title");
+const subjectInput = document.getElementById("subject");
+const colorInput = document.getElementById("color");
+const dueInput = document.getElementById("due");
+const minutesInput = document.getElementById("minutes");
+const difficultyInput = document.getElementById("difficulty");
+const importanceInput = document.getElementById("importance");
+const startTimeInput = document.getElementById("startTime");
+
 let animationDelay = 0;
 
 addBtn.onclick = () => {
   const assignment = {
-    title: title.value,
-    subject: subject.value || "General",
-    color: color.value || "#1e88e5",
-    due: new Date(due.value),
-    minutes: Number(minutes.value),
-    difficulty: Number(difficulty.value),
-    importance: Number(importance.value)
+    title: titleInput.value,
+    subject: subjectInput.value || "General",
+    color: colorInput.value || "#1e88e5",
+    due: new Date(dueInput.value),
+    minutes: Number(minutesInput.value),
+    difficulty: Number(difficultyInput.value),
+    importance: Number(importanceInput.value)
   };
 
   if (!assignment.title || !assignment.due || !assignment.minutes) {
@@ -26,20 +36,20 @@ addBtn.onclick = () => {
   localStorage.setItem("assignments", JSON.stringify(assignments));
   alert("Assignment added.");
 
-  // Clear input fields
-  title.value = "";
-  subject.value = "";
-  color.value = "#1e88e5";
-  due.value = "";
-  minutes.value = "";
-  difficulty.value = "";
-  importance.value = "";
+  // Clear inputs
+  titleInput.value = "";
+  subjectInput.value = "";
+  colorInput.value = "#1e88e5";
+  dueInput.value = "";
+  minutesInput.value = "";
+  difficultyInput.value = "";
+  importanceInput.value = "";
 };
 
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
   animationDelay = 0;
-  let currentTime = parseTime(startTime.value);
+  let currentTime = parseTime(startTimeInput.value);
 
   const sorted = assignments
     .map(a => ({ ...a, score: priorityScore(a) }))
@@ -130,7 +140,6 @@ function formatTime(d) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-// Darken color helper for border contrast
 function darkenColor(hex, percent) {
   let num = parseInt(hex.replace("#",""),16),
       amt = Math.round(2.55 * percent),
