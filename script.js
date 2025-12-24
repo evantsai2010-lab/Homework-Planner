@@ -1,20 +1,29 @@
-let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+// Input references
+const titleInput = document.getElementById("title");
+const subjectInput = document.getElementById("subject");
+const subjectColorInput = document.getElementById("subjectColor");
+const dueInput = document.getElementById("due");
+const minutesInput = document.getElementById("minutes");
+const difficultyInput = document.getElementById("difficulty");
+const importanceInput = document.getElementById("importance");
+const startTimeInput = document.getElementById("startTime");
 
 const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
+let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
 let animationDelay = 0;
 
 addBtn.onclick = () => {
   const assignment = {
-    title: title.value,
-    subject: subject.value || "General",
-    subjectColor: subjectColor.value || "#1e88e5",
-    due: new Date(due.value),
-    minutes: Number(minutes.value),
-    difficulty: Number(difficulty.value),
-    importance: Number(importance.value)
+    title: titleInput.value,
+    subject: subjectInput.value || "General",
+    subjectColor: subjectColorInput.value || "#1e88e5",
+    due: new Date(dueInput.value),
+    minutes: Number(minutesInput.value),
+    difficulty: Number(difficultyInput.value),
+    importance: Number(importanceInput.value)
   };
 
   assignments.push(assignment);
@@ -22,19 +31,19 @@ addBtn.onclick = () => {
   alert("Assignment added.");
 
   // Clear inputs
-  title.value = "";
-  subject.value = "";
-  subjectColor.value = "#1e88e5";
-  due.value = "";
-  minutes.value = "";
-  difficulty.value = "";
-  importance.value = "";
+  titleInput.value = "";
+  subjectInput.value = "";
+  subjectColorInput.value = "#1e88e5";
+  dueInput.value = "";
+  minutesInput.value = "";
+  difficultyInput.value = "";
+  importanceInput.value = "";
 };
 
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
   animationDelay = 0;
-  let currentTime = parseTime(startTime.value);
+  let currentTime = parseTime(startTimeInput.value);
 
   const sorted = assignments
     .map(a => ({ ...a, score: priorityScore(a) }))
@@ -70,10 +79,7 @@ generateBtn.onclick = () => {
 
 // ---------- LOGIC ----------
 function priorityScore(a) {
-  const daysUntilDue = Math.max(
-    1,
-    (a.due - new Date()) / (1000 * 60 * 60 * 24)
-  );
+  const daysUntilDue = Math.max(1, (a.due - new Date()) / (1000 * 60 * 60 * 24));
   return (1 / daysUntilDue) * 4 + a.difficulty * 2 + a.importance * 3 + a.minutes / 30;
 }
 
