@@ -3,58 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework Planner</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Slab:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>After-School <span class="italic">Homework Planner</span></h1>
-  </header>
+  <h1>Homework Planner</h1>
 
-  <main>
-    <section class="card input-section">
-      <h2>Add Assignment</h2>
-      <div class="inputs">
-        <input id="title" placeholder="Assignment name">
-        <input id="subject" placeholder="Subject (Math, Science, English)">
-        <div class="color-options">
-          <span class="color-btn" data-color="#e53935" style="background:#e53935"></span>
-          <span class="color-btn" data-color="#43a047" style="background:#43a047"></span>
-          <span class="color-btn" data-color="#1e88e5" style="background:#1e88e5"></span>
-          <span class="color-btn" data-color="#fb8c00" style="background:#fb8c00"></span>
-          <span class="color-btn" data-color="#9c27b0" style="background:#9c27b0"></span>
-        </div>
-        <input id="due" type="date">
-        <input id="minutes" type="number" placeholder="Minutes needed">
-        <div class="inline-inputs">
-          <div>
-            <label>Difficulty (1–5)</label>
-            <input id="difficulty" type="number" min="1" max="5">
-          </div>
-          <div>
-            <label>Importance (1–5)</label>
-            <input id="importance" type="number" min="1" max="5">
-          </div>
-        </div>
-        <button id="addBtn">Add Assignment</button>
-      </div>
-    </section>
+  <div>
+    <input id="title" placeholder="Assignment name">
+    <input id="subject" placeholder="Subject">
+    <input id="due" type="date">
+    <input id="minutes" type="number" placeholder="Minutes needed">
+    <input id="difficulty" type="number" min="1" max="5" placeholder="Difficulty 1–5">
+    <input id="importance" type="number" min="1" max="5" placeholder="Importance 1–5">
+    <button id="addBtn">Add Assignment</button>
+  </div>
 
-    <section class="card time-section">
-      <h2>Start Time</h2>
-      <input id="startTime" type="time" value="15:30">
-      <button id="generateBtn">Generate Schedule</button>
-    </section>
+  <div>
+    <input id="startTime" type="time" value="15:30">
+    <button id="generateBtn">Generate Schedule</button>
+  </div>
 
-    <section class="card schedule-section">
-      <h2>Recommended Schedule</h2>
-      <div id="timeline" class="timeline"></div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Homework Planner &copy; 2025</p>
-  </footer>
+  <div id="timeline"></div>
 
   <script src="script.js"></script>
 </body>
