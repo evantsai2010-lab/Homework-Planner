@@ -4,6 +4,8 @@ const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
+let animationDelay = 0;
+
 addBtn.onclick = () => {
   const assignment = {
     title: title.value,
@@ -20,6 +22,7 @@ addBtn.onclick = () => {
 
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
+  animationDelay = 0; // reset delay
   let currentTime = parseTime(startTime.value);
 
   const sorted = assignments
@@ -52,8 +55,6 @@ generateBtn.onclick = () => {
   });
 };
 
-// ---------- LOGIC ----------
-
 function priorityScore(a) {
   const daysUntilDue = Math.max(
     1,
@@ -68,29 +69,31 @@ function priorityScore(a) {
   );
 }
 
-// ---------- RENDERING ----------
-
 function renderBlock(start, end, title, reason) {
-  timeline.innerHTML += `
-    <div class="schedule-block">
-      <strong>${start} – ${end}</strong><br>
-      <em>${title}</em><br>
-      <small>${reason}</small>
-    </div>
+  const block = document.createElement('div');
+  block.className = 'schedule-block';
+  block.style.animationDelay = `${animationDelay}s`;
+  block.innerHTML = `
+    <strong>${start} – ${end}</strong><br>
+    <em>${title}</em><br>
+    <small>${reason}</small>
   `;
+  timeline.appendChild(block);
+  animationDelay += 0.15;
 }
 
 function renderBreak(start, end) {
-  timeline.innerHTML += `
-    <div class="schedule-block break">
-      <strong>${start} – ${end}</strong><br>
-      <em>Break / Rest</em><br>
-      <small>Recovery time to prevent burnout.</small>
-    </div>
+  const block = document.createElement('div');
+  block.className = 'schedule-block break';
+  block.style.animationDelay = `${animationDelay}s`;
+  block.innerHTML = `
+    <strong>${start} – ${end}</strong><br>
+    <em>Break / Rest</em><br>
+    <small>Recovery time to prevent burnout.</small>
   `;
+  timeline.appendChild(block);
+  animationDelay += 0.15;
 }
-
-// ---------- HELPERS ----------
 
 function explanation(task) {
   if (task.difficulty >= 4)
