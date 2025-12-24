@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Homework Order Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>After-School Homework Planner</h1>
+
+  <section class="input-section">
+    <h2>Add Assignment</h2>
+
+    <input id="title" placeholder="Assignment name" />
+    <input id="due" type="date" />
+    <input id="minutes" type="number" placeholder="Minutes needed" />
+    
+    <label>Difficulty (1–5)</label>
+    <input id="difficulty" type="number" min="1" max="5" />
+
+    <label>Importance (1–5)</label>
+    <input id="importance" type="number" min="1" max="5" />
+
+    <button id="addBtn">Add Assignment</button>
+  </section>
+
+  <section class="time-section">
+    <h2>Start Time</h2>
+    <input id="startTime" type="time" value="15:30" />
+    <button id="generateBtn">Generate Schedule</button>
+  </section>
+
+  <section class="schedule">
+    <h2>Recommended Schedule</h2>
+    <div id="timeline"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
