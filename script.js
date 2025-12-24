@@ -4,7 +4,7 @@ const addBtn = document.getElementById("addBtn");
 const generateBtn = document.getElementById("generateBtn");
 const timeline = document.getElementById("timeline");
 
-let animationDelay = 0;
+let animationDelay = 0; // for staggered animation
 
 addBtn.onclick = () => {
   const assignment = {
@@ -22,7 +22,7 @@ addBtn.onclick = () => {
 
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
-  animationDelay = 0; // reset delay
+  animationDelay = 0;
   let currentTime = parseTime(startTime.value);
 
   const sorted = assignments
@@ -40,7 +40,8 @@ generateBtn.onclick = () => {
         formatTime(currentTime),
         formatTime(endTime),
         task.title,
-        explanation(task)
+        explanation(task),
+        task.score
       );
 
       currentTime = endTime;
@@ -55,6 +56,7 @@ generateBtn.onclick = () => {
   });
 };
 
+// ---------- LOGIC ----------
 function priorityScore(a) {
   const daysUntilDue = Math.max(
     1,
@@ -69,9 +71,10 @@ function priorityScore(a) {
   );
 }
 
-function renderBlock(start, end, title, reason) {
+// ---------- RENDERING ----------
+function renderBlock(start, end, title, reason, score) {
   const block = document.createElement('div');
-  block.className = 'schedule-block';
+  block.className = 'schedule-block ' + priorityClass(score);
   block.style.animationDelay = `${animationDelay}s`;
   block.innerHTML = `
     <strong>${start} – ${end}</strong><br>
@@ -95,6 +98,14 @@ function renderBreak(start, end) {
   animationDelay += 0.15;
 }
 
+// Assign color class based on score
+function priorityClass(score) {
+  if(score >= 10) return 'high';
+  if(score >= 6) return 'medium';
+  return 'low';
+}
+
+// ---------- HELPERS ----------
 function explanation(task) {
   if (task.difficulty >= 4)
     return "Scheduled early because it requires high focus.";
