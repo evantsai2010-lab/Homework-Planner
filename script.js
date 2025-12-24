@@ -24,6 +24,7 @@ colorButtons.forEach(btn => {
 
 let animationDelay = 0;
 
+// ---------- ADD ASSIGNMENT ----------
 addBtn.onclick = () => {
   const assignment = {
     title: titleInput.value,
@@ -44,7 +45,7 @@ addBtn.onclick = () => {
   localStorage.setItem("assignments", JSON.stringify(assignments));
   alert("Assignment added.");
 
-  // Clear inputs
+  // Clear inputs for next entry
   titleInput.value = "";
   subjectInput.value = "";
   dueInput.value = "";
@@ -53,9 +54,11 @@ addBtn.onclick = () => {
   importanceInput.value = "";
 };
 
+// ---------- GENERATE SCHEDULE ----------
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
   animationDelay = 0;
+
   let currentTime = parseTime(startTimeInput.value);
 
   const sorted = assignments
@@ -147,6 +150,7 @@ function formatTime(d) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
+// Darken color for border effect
 function darkenColor(hex, percent) {
   let num = parseInt(hex.replace("#",""),16),
       amt = Math.round(2.55 * percent),
