@@ -23,7 +23,6 @@ colorButtons.forEach(btn => {
   });
 });
 
-// ---------- ADD ASSIGNMENT ----------
 addBtn.onclick = () => {
   const assignment = {
     title: titleInput.value,
@@ -41,7 +40,7 @@ addBtn.onclick = () => {
 
   assignments.push(assignment);
 
-  // Clear inputs
+  
   titleInput.value = "";
   subjectInput.value = "";
   dueInput.value = "";
@@ -50,7 +49,7 @@ addBtn.onclick = () => {
   importanceInput.value = "";
 };
 
-// ---------- GENERATE SCHEDULE ----------
+
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
   animationDelay = 0;
@@ -67,7 +66,7 @@ generateBtn.onclick = () => {
       currentTime = endTime;
       remaining -= blockMinutes;
 
-      // Insert 10-min break if needed
+      
       if (remaining > 0) {
         let breakEnd = addMinutes(currentTime, 10);
         renderBreak(formatTime(currentTime), formatTime(breakEnd));
@@ -77,7 +76,7 @@ generateBtn.onclick = () => {
   });
 };
 
-// ---------- RENDERING ----------
+
 function renderBlock(start, end, title, subject, color) {
   const block = document.createElement('div');
   block.className = 'schedule-block';
@@ -98,7 +97,9 @@ function renderBreak(start, end) {
   animationDelay += 0.15;
 }
 
-// ---------- HELPERS ----------
+
+
+
 function parseTime(t) {
   const [h, m] = t.split(":").map(Number);
   const d = new Date();
@@ -113,3 +114,4 @@ function addMinutes(date, mins) {
 function formatTime(d) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
+
