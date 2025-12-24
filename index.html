@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework Planner</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Homework Planner</h1>
 
-  <div>
+  <div class="inputs">
     <input id="title" placeholder="Assignment name">
     <input id="subject" placeholder="Subject">
+
     <input id="due" type="date">
     <input id="minutes" type="number" placeholder="Minutes needed">
     <input id="difficulty" type="number" min="1" max="5" placeholder="Difficulty 1–5">
     <input id="importance" type="number" min="1" max="5" placeholder="Importance 1–5">
+
+    <div id="color-picker">
+      <span>Select Color:</span>
+      <button class="color-btn" data-color="#1e88e5" style="background:#1e88e5"></button>
+      <button class="color-btn" data-color="#43a047" style="background:#43a047"></button>
+      <button class="color-btn" data-color="#e53935" style="background:#e53935"></button>
+      <button class="color-btn" data-color="#fb8c00" style="background:#fb8c00"></button>
+      <button class="color-btn" data-color="#9c27b0" style="background:#9c27b0"></button>
+    </div>
+
     <button id="addBtn">Add Assignment</button>
   </div>
 
