@@ -26,6 +26,11 @@ addBtn.onclick = () => {
     importance: Number(importanceInput.value)
   };
 
+  if (!assignment.title || !assignment.due || !assignment.minutes) {
+    alert("Please fill out Assignment name, Due date, and Minutes needed.");
+    return;
+  }
+
   assignments.push(assignment);
   localStorage.setItem("assignments", JSON.stringify(assignments));
   alert("Assignment added.");
@@ -43,6 +48,7 @@ addBtn.onclick = () => {
 generateBtn.onclick = () => {
   timeline.innerHTML = "";
   animationDelay = 0;
+
   let currentTime = parseTime(startTimeInput.value);
 
   const sorted = assignments
@@ -53,8 +59,8 @@ generateBtn.onclick = () => {
     let remaining = task.minutes;
 
     while (remaining > 0) {
-      let blockMinutes = Math.min(50, remaining);
-      let endTime = addMinutes(currentTime, blockMinutes);
+      const blockMinutes = Math.min(50, remaining);
+      const endTime = addMinutes(currentTime, blockMinutes);
 
       renderBlock(
         formatTime(currentTime),
@@ -69,7 +75,7 @@ generateBtn.onclick = () => {
       remaining -= blockMinutes;
 
       if (remaining > 0 || index < sorted.length - 1) {
-        let breakEnd = addMinutes(currentTime, 10);
+        const breakEnd = addMinutes(currentTime, 10);
         renderBreak(formatTime(currentTime), formatTime(breakEnd));
         currentTime = breakEnd;
       }
@@ -85,8 +91,8 @@ function priorityScore(a) {
 
 // ---------- RENDERING ----------
 function renderBlock(start, end, title, reason, subject, color) {
-  const block = document.createElement('div');
-  block.className = 'schedule-block';
+  const block = document.createElement("div");
+  block.className = "schedule-block";
   block.style.backgroundColor = color;
   block.style.borderLeft = `6px solid ${darkenColor(color, 20)}`;
   block.style.animationDelay = `${animationDelay}s`;
@@ -100,8 +106,8 @@ function renderBlock(start, end, title, reason, subject, color) {
 }
 
 function renderBreak(start, end) {
-  const block = document.createElement('div');
-  block.className = 'schedule-block break';
+  const block = document.createElement("div");
+  block.className = "schedule-block break";
   block.style.animationDelay = `${animationDelay}s`;
   block.innerHTML = `
     <strong>${start} – ${end}</strong>
@@ -134,7 +140,7 @@ function formatTime(d) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-// Darken color helper
+// ---------- COLOR HELPER ----------
 function darkenColor(hex, percent) {
   let num = parseInt(hex.replace("#",""),16),
       amt = Math.round(2.55 * percent),
